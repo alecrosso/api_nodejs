@@ -73,4 +73,17 @@ module.exports = {
         
         res.json(json);
     },
+
+    indicadores: async(req, res)=>{
+        let json = {error:'', result:{}}; //retorna um objeto
+        let total = await ProdutoService.contarProdutos();
+        let somatorio = await ProdutoService.somarValores();
+
+        if(total){
+            json.result.qtdTotalProdutos = total;
+            json.result.precoTotal = somatorio;
+        }
+        
+        res.json(json);
+    },
 };
